@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>America's Trucking Logistics — Propuesta 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Instrument+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --red:      #C41E1E;
+  --red-lt:   #E02828;
+  --red-dim:  rgba(196,30,30,0.08);
+  --blue:     #1B3C8B;
+  --blue-lt:  #2A52B3;
+  --blue-dim: rgba(27,60,139,0.07);
+  --gold:     #C8860A;
+  --gold-lt:  #E5A020;
+  --gold-dim: rgba(200,134,10,0.1);
+  --ink:      #0E1826;
+  --ink2:     #1E2D40;
+  --white:    #FFFFFF;
+  --cream:    #FAF8F5;
+  --mist:     #EFF2F7;
+  --gray:     #6B7A90;
+  --border:   #DDE2EB;
+}
+
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:'Instrument Sans', sans-serif; background:var(--white); color:var(--ink); overflow-x:hidden; }
+
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-thumb { background:var(--red); }
+
+/* ═══════════ NAV ═══════════ */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:300;
+  height:70px; display:flex; align-items:center; justify-content:space-between;
+  padding:0 60px;
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+
+/* LOGO v4 — shield wordmark */
+.logo4 { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.logo4-icon {
+  width:44px; height:44px; position:relative; flex-shrink:0;
+}
+.logo4-text { display:flex; flex-direction:column; line-height:1; }
+.logo4-text strong {
+  font-family:'Playfair Display', serif; font-size:15px; font-weight:700;
+  color:var(--ink); letter-spacing:.02em;
+}
+.logo4-text span {
+  font-size:9px; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--gold); font-weight:600;
+}
+
+.nav-links { display:flex; gap:36px; list-style:none; }
+.nav-links a {
+  font-size:13px; font-weight:500; letter-spacing:.04em;
+  color:var(--gray); text-decoration:none; transition:color .2s;
+}
+.nav-links a:hover { color:var(--ink); }
+
+.nav-btn {
+  background:var(--red); color:#fff; border:none; cursor:pointer;
+  font-family:'Instrument Sans', sans-serif; font-size:13px; font-weight:600;
+  letter-spacing:.08em; padding:11px 26px; border-radius:2px;
+  transition:background .2s;
+}
+.nav-btn:hover { background:#a01818; }
+
+/* ═══════════ HERO ═══════════ */
+#hero {
+  min-height:100vh; padding-top:70px;
+  display:grid; grid-template-columns:1fr 1fr;
+  position:relative; overflow:hidden;
+}
+
+.hero-left {
+  background:var(--ink);
+  padding:80px 72px 80px 80px;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative; overflow:hidden;
+}
+.hero-left::before {
+  content:''; position:absolute; bottom:-80px; left:-80px;
+  width:360px; height:360px; border-radius:50%;
+  background:radial-gradient(circle, rgba(196,30,30,0.18) 0%, transparent 70%);
+}
+.hero-left::after {
+  content:''; position:absolute; top:0; right:0; bottom:0; width:3px;
+  background:linear-gradient(to bottom, var(--red), var(--gold), var(--blue));
+}
+
+.h-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:10px; font-weight:600; letter-spacing:.32em; text-transform:uppercase;
+  color:var(--gold-lt); margin-bottom:28px;
+}
+.h-tag-dot { width:6px; height:6px; background:var(--red); border-radius:50%; animation:blink 1.8s infinite; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.2;} }
+
+.hero-h1 {
+  font-family:'Playfair Display', serif; font-weight:900;
+  font-size:clamp(44px,5.5vw,78px); line-height:.97;
+  color:var(--white); margin-bottom:24px;
+}
+.hero-h1 em { color:var(--red-lt); font-style:normal; }
+
+.hero-sub {
+  font-size:16px; font-weight:300; color:rgba(255,255,255,.55);
+  line-height:1.8; max-width:420px; margin-bottom:40px;
+}
+
+.hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+.btn-h1 {
+  background:var(--red); color:#fff; border:none; cursor:pointer;
+  font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  padding:15px 32px; transition:background .2s; text-decoration:none;
+}
+.btn-h1:hover { background:#a01818; }
+.btn-h2 {
+  background:transparent; color:rgba(255,255,255,.65); cursor:pointer;
+  font-size:13px; font-weight:500; letter-spacing:.08em;
+  padding:15px 32px; border:1px solid rgba(255,255,255,.2);
+  transition:border-color .2s, color .2s; text-decoration:none;
+}
+.btn-h2:hover { color:#fff; border-color:rgba(255,255,255,.5); }
+
+.trust-row {
+  display:flex; align-items:center; gap:16px; margin-top:44px;
+  padding-top:32px; border-top:1px solid rgba(255,255,255,.1);
+}
+.trust-avatars { display:flex; }
+.t-av {
+  width:34px; height:34px; border-radius:50%;
+  border:2px solid var(--ink); margin-left:-10px; overflow:hidden;
+  background:var(--blue); display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700; color:#fff;
+}
+.t-av:first-child { margin-left:0; }
+.trust-text strong { display:block; font-size:14px; color:#fff; font-weight:700; }
+.trust-text span { font-size:11px; color:rgba(255,255,255,.45); }
+
+/* hero right — image + floating card */
+.hero-right {
+  background:url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200&q=80') center/cover no-repeat;
+  position:relative;
+}
+.hero-right::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(14,24,38,.3) 0%, transparent 60%);
+}
+
+.float-review {
+  position:absolute; bottom:48px; left:-28px;
+  background:#fff; padding:22px 26px; width:280px;
+  box-shadow:0 20px 60px rgba(14,24,38,.18);
+  border-left:4px solid var(--gold);
+  animation:floatUp 3s ease infinite;
+}
+@keyframes floatUp { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+
+.fr-stars { color:var(--gold); font-size:13px; margin-bottom:8px; letter-spacing:2px; }
+.fr-quote { font-size:13px; color:var(--ink); line-height:1.6; font-style:italic; margin-bottom:10px; }
+.fr-author { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--gray); }
+
+.hero-badge2 {
+  position:absolute; top:48px; right:32px;
+  background:var(--red); color:#fff; padding:18px 22px; text-align:center;
+}
+.hb2-num { font-family:'Playfair Display', serif; font-size:40px; font-weight:900; line-height:1; }
+.hb2-lbl { font-size:10px; letter-spacing:.16em; text-transform:uppercase; opacity:.8; }
+
+/* ═══════════ STATS STRIP ═══════════ */
+.stats-strip {
+  background:var(--blue); display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:3px solid var(--red);
+}
+.sst {
+  padding:26px 40px; border-right:1px solid rgba(255,255,255,.12);
+  display:flex; align-items:center; gap:16px;
+}
+.sst:last-child { border-right:none; }
+.sst-num { font-family:'Playfair Display', serif; font-size:36px; font-weight:900; color:#fff; line-height:1; }
+.sst-lbl { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.6); line-height:1.4; }
+
+/* ═══════════ SECTION BASE ═══════════ */
+.sec4 { padding:100px 80px; }
+.tag4 {
+  font-size:10px; font-weight:700; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--red); display:flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.tag4::before { content:''; width:24px; height:2px; background:var(--red); }
+h2.sh4 {
+  font-family:'Playfair Display', serif; font-weight:900;
+  font-size:clamp(36px,4.5vw,60px); line-height:.95; margin-bottom:16px;
+}
+h2.sh4 em { color:var(--red); font-style:normal; }
+h2.sh4 .b { color:var(--blue); }
+.sdesc { font-size:16px; font-weight:300; color:var(--gray); line-height:1.8; max-width:520px; margin-bottom:60px; }
+
+/* ═══════════ SERVICIOS ═══════════ */
+#servicios4 { background:var(--cream); }
+.svc4-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+.svc4 {
+  background:var(--white); padding:44px 36px; position:relative; overflow:hidden;
+  transition:box-shadow .25s, transform .25s;
+  border-bottom:3px solid transparent;
+  cursor:default;
+}
+.svc4::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--red), var(--gold));
+  transform:scaleX(0); transition:transform .3s; transform-origin:left;
+}
+.svc4:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(14,24,38,.1); }
+.svc4:hover::before { transform:scaleX(1); }
+.svc4-num {
+  position:absolute; top:16px; right:20px;
+  font-family:'Playfair Display', serif; font-size:56px; font-weight:900;
+  color:var(--mist); line-height:1; user-select:none;
+}
+.svc4-icon {
+  width:50px; height:50px; background:var(--blue); margin-bottom:20px;
+  display:flex; align-items:center; justify-content:center; font-size:22px;
+}
+.svc4-title {
+  font-family:'Instrument Sans', sans-serif; font-size:17px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.06em; color:var(--ink); margin-bottom:10px;
+}
+.svc4-desc { font-size:14px; font-weight:300; color:var(--gray); line-height:1.75; }
+
+/* ═══════════ TESTIMONIALS — HERO SECTION ═══════════ */
+#testimonios {
+  background:var(--ink);
+  position:relative; overflow:hidden;
+  padding:120px 80px;
+}
+#testimonios::before {
+  content:''; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+#testimonios::after {
+  content:''; position:absolute; bottom:-150px; right:-150px;
+  width:500px; height:500px; border-radius:50%;
+  background:radial-gradient(circle, rgba(196,30,30,.15) 0%, transparent 65%);
+  pointer-events:none;
+}
+
+.test-header { position:relative; z-index:1; text-align:center; margin-bottom:72px; }
+.test-header .tag4 { justify-content:center; color:var(--gold-lt); }
+.test-header .tag4::before { background:var(--gold-lt); }
+.test-header h2 { font-family:'Playfair Display', serif; font-size:clamp(36px,5vw,64px); font-weight:900; color:#fff; }
+.test-header h2 em { color:var(--gold-lt); font-style:italic; }
+.test-header p { color:rgba(255,255,255,.45); font-size:16px; font-weight:300; margin-top:14px; }
+
+/* rating summary */
+.rating-summary {
+  display:flex; align-items:center; justify-content:center; gap:24px;
+  margin-bottom:56px; position:relative; z-index:1;
+}
+.rs-score {
+  font-family:'Playfair Display', serif; font-size:72px; font-weight:900; color:#fff; line-height:1;
+}
+.rs-right { display:flex; flex-direction:column; gap:6px; }
+.rs-stars { color:var(--gold-lt); font-size:22px; letter-spacing:3px; }
+.rs-count { font-size:13px; color:rgba(255,255,255,.45); }
+
+.rs-bars { display:flex; flex-direction:column; gap:5px; }
+.rs-bar-row { display:flex; align-items:center; gap:10px; font-size:11px; color:rgba(255,255,255,.4); }
+.rs-bar-track { width:120px; height:5px; background:rgba(255,255,255,.1); border-radius:2px; }
+.rs-bar-fill { height:100%; background:var(--gold-lt); border-radius:2px; }
+
+/* TESTIMONIALS GRID */
+.test-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:20px; position:relative; z-index:1;
+}
+
+/* featured testimonial — span 2 cols */
+.test-card {
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  padding:36px; position:relative; overflow:hidden;
+  transition:border-color .3s, background .3s;
+}
+.test-card:hover { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.18); }
+.test-card.featured { grid-column:span 2; background:rgba(196,30,30,.12); border-color:rgba(196,30,30,.3); }
+.test-card.featured:hover { background:rgba(196,30,30,.18); border-color:rgba(196,30,30,.5); }
+.test-card.gold-card { background:rgba(200,134,10,.1); border-color:rgba(200,134,10,.25); }
+.test-card.gold-card:hover { background:rgba(200,134,10,.16); border-color:rgba(200,134,10,.4); }
+.test-card.blue-card { background:rgba(27,60,139,.18); border-color:rgba(27,60,139,.35); }
+.test-card.blue-card:hover { background:rgba(27,60,139,.25); border-color:rgba(27,60,139,.5); }
+
+.tc-quote-mark {
+  font-family:'Playfair Display', serif; font-size:80px; line-height:.7;
+  color:var(--red); opacity:.4; margin-bottom:16px; display:block;
+}
+.test-card.gold-card .tc-quote-mark { color:var(--gold-lt); }
+.test-card.blue-card .tc-quote-mark { color:var(--blue-lt); }
+
+.tc-stars { color:var(--gold-lt); font-size:14px; letter-spacing:2px; margin-bottom:14px; }
+
+.tc-text {
+  font-family:'DM Serif Display', serif; font-size:16px; font-weight:400;
+  color:rgba(255,255,255,.88); line-height:1.7; margin-bottom:24px;
+  font-style:italic;
+}
+.test-card.featured .tc-text { font-size:19px; }
+
+.tc-footer { display:flex; align-items:center; gap:14px; }
+.tc-avatar {
+  width:44px; height:44px; border-radius:50%;
+  background:linear-gradient(135deg, var(--blue), var(--red));
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:700; color:#fff; flex-shrink:0;
+  font-family:'Playfair Display', serif;
+}
+.tc-avatar.gold-av { background:linear-gradient(135deg, var(--gold), #7a4a00); }
+.tc-avatar.blue-av { background:linear-gradient(135deg, var(--blue-lt), #0a1a50); }
+.tc-name { font-size:13px; font-weight:700; color:#fff; letter-spacing:.04em; margin-bottom:2px; }
+.tc-role { font-size:11px; color:rgba(255,255,255,.4); letter-spacing:.06em; }
+
+.tc-tag {
+  position:absolute; top:24px; right:24px;
+  font-size:10px; letter-spacing:.18em; text-transform:uppercase; font-weight:700;
+  padding:4px 12px; background:rgba(196,30,30,.25); color:var(--red-lt);
+  border:1px solid rgba(196,30,30,.3);
+}
+.test-card.gold-card .tc-tag { background:rgba(200,134,10,.2); color:var(--gold-lt); border-color:rgba(200,134,10,.3); }
+.test-card.blue-card .tc-tag { background:rgba(27,60,139,.3); color:#7fa0e8; border-color:rgba(27,60,139,.4); }
+
+/* video-style testimonial */
+.test-video {
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08);
+  padding:0; overflow:hidden; cursor:pointer; transition:border-color .3s;
+  position:relative; z-index:1;
+}
+.test-video:hover { border-color:rgba(255,255,255,.2); }
+.tv-thumb {
+  height:180px; position:relative; overflow:hidden;
+  background:linear-gradient(135deg, var(--blue2,#0D1E6A) 0%, var(--red) 100%);
+  display:flex; align-items:center; justify-content:center;
+}
+.tv-play {
+  width:56px; height:56px; border-radius:50%;
+  background:rgba(255,255,255,.15); border:2px solid rgba(255,255,255,.4);
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; color:#fff; transition:background .2s;
+}
+.test-video:hover .tv-play { background:rgba(255,255,255,.28); }
+.tv-body { padding:24px; }
+.tv-stars { color:var(--gold-lt); font-size:13px; letter-spacing:2px; margin-bottom:10px; }
+.tv-quote { font-size:14px; color:rgba(255,255,255,.7); font-style:italic; line-height:1.6; margin-bottom:16px; }
+.tv-author { font-size:11px; font-weight:700; color:#fff; letter-spacing:.1em; text-transform:uppercase; }
+.tv-co { font-size:10px; color:rgba(255,255,255,.4); }
+
+/* carousel indicator */
+.test-nav { display:flex; justify-content:center; gap:8px; margin-top:48px; position:relative; z-index:1; }
+.tn-dot { width:24px; height:3px; background:rgba(255,255,255,.2); cursor:pointer; transition:background .2s; }
+.tn-dot.active { background:var(--red); width:48px; }
+
+/* partner logos strip */
+.partners-strip {
+  background:var(--mist); padding:32px 80px;
+  display:flex; align-items:center; gap:60px; overflow:hidden;
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+}
+.ps-label { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gray); white-space:nowrap; }
+.ps-logos { display:flex; align-items:center; gap:52px; flex:1; }
+.ps-logo { font-family:'Instrument Sans', sans-serif; font-size:14px; font-weight:700; letter-spacing:.08em; color:var(--border); text-transform:uppercase; white-space:nowrap; }
+
+/* ═══════════ COTIZADOR ═══════════ */
+#cotizador4 { background:var(--white); }
+.q4-wrap { display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:start; }
+.q4-form { display:flex; flex-direction:column; gap:16px; }
+.q4-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.q4f { display:flex; flex-direction:column; gap:6px; }
+.q4f label { font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--blue); }
+.q4f input, .q4f select {
+  border:none; border-bottom:2px solid var(--border);
+  padding:12px 0; font-family:'Instrument Sans', sans-serif;
+  font-size:15px; color:var(--ink); background:transparent;
+  outline:none; transition:border-color .2s; -webkit-appearance:none;
+}
+.q4f input:focus, .q4f select:focus { border-bottom-color:var(--red); }
+.q4f input::placeholder { color:var(--border); }
+
+.q4-btn {
+  background:var(--red); color:#fff; border:none; cursor:pointer;
+  font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  padding:18px; margin-top:8px; transition:background .2s;
+}
+.q4-btn:hover { background:#a01818; }
+
+/* result side */
+.q4-result-side { position:sticky; top:100px; }
+.q4-trust {
+  background:var(--blue); color:#fff; padding:36px; margin-bottom:16px;
+}
+.q4t-head { font-family:'Playfair Display', serif; font-size:22px; font-weight:700; margin-bottom:4px; }
+.q4t-sub { font-size:13px; opacity:.6; margin-bottom:24px; }
+.q4t-price { font-family:'Playfair Display', serif; font-size:56px; font-weight:900; line-height:1; margin-bottom:6px; }
+.q4t-range { font-size:12px; opacity:.55; margin-bottom:28px; }
+.q4t-feat { display:flex; flex-direction:column; gap:10px; }
+.q4t-feat-item { display:flex; align-items:center; gap:10px; font-size:13px; opacity:.8; }
+.q4t-feat-item::before { content:'✓'; color:var(--gold-lt); font-weight:700; }
+
+.q4-mini-test { background:var(--cream); padding:28px; border-left:4px solid var(--gold); }
+.q4mt-stars { color:var(--gold); font-size:14px; letter-spacing:2px; margin-bottom:10px; }
+.q4mt-quote { font-size:14px; font-style:italic; color:var(--ink); line-height:1.65; margin-bottom:14px; }
+.q4mt-author { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gray); }
+
+/* ═══════════ ABOUT ═══════════ */
+#nosotros4 { background:var(--cream); }
+.ab4-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.ab4-img { position:relative; }
+.ab4-img img { width:100%; display:block; }
+.ab4-stripe { position:absolute; bottom:0; left:0; right:0; height:6px; background:linear-gradient(90deg, var(--red) 50%, var(--gold) 50%); }
+.ab4-badge {
+  position:absolute; bottom:-20px; right:-20px;
+  background:var(--red); color:#fff; padding:28px; text-align:center;
+}
+.ab4-badge strong { font-family:'Playfair Display', serif; font-size:44px; font-weight:900; display:block; line-height:1; }
+.ab4-badge span { font-size:10px; letter-spacing:.18em; text-transform:uppercase; opacity:.8; }
+
+.pillar4 { padding:22px 0; border-bottom:1px solid var(--border); display:flex; gap:16px; }
+.pillar4:last-child { border-bottom:none; }
+.p4-num { font-family:'Playfair Display', serif; font-size:32px; font-weight:900; color:var(--red); min-width:40px; line-height:1; }
+.p4-body h4 { font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--ink); margin-bottom:4px; }
+.p4-body p { font-size:13px; font-weight:300; color:var(--gray); line-height:1.7; }
+
+/* ═══════════ ADMIN ═══════════ */
+#admin4 { background:var(--white); }
+.ad4-wrap { display:grid; grid-template-columns:1fr 1.4fr; gap:56px; }
+.feat4 { padding:24px 0; border-bottom:1px solid var(--border); display:flex; gap:18px; }
+.feat4:last-child { border-bottom:none; }
+.feat4-icon {
+  width:44px; height:44px; min-width:44px; background:var(--blue-dim);
+  border:1px solid rgba(27,60,139,.15); display:flex; align-items:center; justify-content:center; font-size:20px;
+}
+.feat4 h4 { font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--ink); margin-bottom:4px; display:flex; align-items:center; gap:8px; }
+.fbadge { font-size:9px; background:var(--red-dim); color:var(--red); border:1px solid rgba(196,30,30,.2); padding:2px 8px; font-weight:700; letter-spacing:.12em; }
+.fbadge.g { background:rgba(34,197,94,.08); color:#15a550; border-color:rgba(34,197,94,.2); }
+.feat4 p { font-size:13px; color:var(--gray); line-height:1.7; }
+.gs-pill { display:inline-flex; align-items:center; gap:6px; margin-top:8px; background:rgba(34,197,94,.07); border:1px solid rgba(34,197,94,.2); padding:5px 12px; font-size:11px; color:#15a550; font-weight:600; letter-spacing:.1em; }
+
+/* dashboard */
+.dash4 { background:var(--ink); overflow:hidden; box-shadow:0 24px 64px rgba(14,24,38,.15); }
+.d4-bar { background:var(--ink2); padding:10px 18px; display:flex; align-items:center; gap:8px; border-bottom:1px solid rgba(255,255,255,.06); }
+.d4-dot { width:9px; height:9px; border-radius:50%; }
+.d4-dot.r{background:var(--red);} .d4-dot.y{background:var(--gold-lt);} .d4-dot.g{background:#22c55e;}
+.d4-bar-title { margin-left:auto; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.2); }
+.d4-body { padding:20px; }
+.d4-kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:14px; }
+.d4-kpi { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06); padding:14px 12px; border-bottom:2px solid; }
+.d4-kpi.k1{border-bottom-color:var(--blue);} .d4-kpi.k2{border-bottom-color:var(--red);} .d4-kpi.k3{border-bottom-color:var(--gold);} .d4-kpi.k4{border-bottom-color:#22c55e;}
+.d4-val { font-family:'Playfair Display', serif; font-size:24px; font-weight:900; color:#fff; line-height:1; }
+.d4-lbl { font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.3); }
+.d4-chart { background:rgba(255,255,255,.03); padding:12px; margin-bottom:12px; }
+.d4-chart-title { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-lt); margin-bottom:10px; font-weight:700; }
+.d4-bars { display:flex; align-items:flex-end; gap:4px; height:52px; }
+.d4-bar-col { flex:1; display:flex; flex-direction:column; height:100%; justify-content:flex-end; }
+.d4-bar-fill { width:100%; }
+.d4-bar-lbl { text-align:center; font-size:8px; color:rgba(255,255,255,.25); margin-top:3px; }
+.d4-table { width:100%; border-collapse:collapse; font-size:11px; }
+.d4-table th { text-align:left; padding:7px 10px; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.3); border-bottom:1px solid rgba(255,255,255,.05); }
+.d4-table td { padding:7px 10px; border-bottom:1px solid rgba(255,255,255,.04); color:rgba(255,255,255,.55); }
+.st { display:inline-block; padding:2px 8px; font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+.st.t{background:rgba(200,134,10,.15);color:var(--gold-lt);} .st.d{background:rgba(34,197,94,.1);color:#22c55e;} .st.p{background:rgba(196,30,30,.12);color:var(--red);}
+
+/* ═══════════ CONTACT ═══════════ */
+#contacto4 { background:var(--blue); padding:80px; }
+.c4-wrap { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.c4-h { font-family:'Playfair Display', serif; font-size:clamp(36px,4vw,58px); font-weight:900; color:#fff; line-height:.95; margin-bottom:16px; }
+.c4-h em { color:var(--gold-lt); font-style:italic; }
+.c4-sub { font-size:16px; color:rgba(255,255,255,.55); margin-bottom:32px; line-height:1.7; }
+.c4-cc { display:flex; align-items:center; gap:14px; padding:18px 0; border-bottom:1px solid rgba(255,255,255,.1); }
+.c4-cc:last-child { border-bottom:none; }
+.c4-icon { width:40px; height:40px; background:rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; font-size:18px; border:1px solid rgba(255,255,255,.15); }
+.c4-label { font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-lt); font-weight:700; margin-bottom:2px; }
+.c4-val { font-size:14px; color:rgba(255,255,255,.8); }
+
+/* ═══════════ FOOTER ═══════════ */
+footer {
+  background:var(--ink); padding:28px 80px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-top:3px solid var(--red);
+}
+.foot4-logo { font-family:'Playfair Display', serif; font-size:15px; font-weight:700; color:rgba(255,255,255,.4); }
+.foot4-logo span { color:var(--gold-lt); }
+.foot4-copy { font-size:11px; color:rgba(255,255,255,.25); }
+.foot4-links { display:flex; gap:24px; }
+.foot4-links a { font-size:11px; color:rgba(255,255,255,.3); text-decoration:none; transition:color .2s; }
+.foot4-links a:hover { color:var(--gold-lt); }
+
+/* ═══════════ PROPOSAL BADGE ═══════════ */
+.p4-badge {
+  position:fixed; bottom:20px; right:20px; z-index:400;
+  background:var(--white); color:var(--ink);
+  border:2px solid var(--red); padding:9px 18px;
+  font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  font-family:'Instrument Sans', sans-serif;
+  box-shadow:0 4px 20px rgba(14,24,38,.15);
+}
+
+/* ═══════════ REVEALS ═══════════ */
+.rv { opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .6s ease; }
+.rv.in { opacity:1; transform:translateY(0); }
+.rv.d1{transition-delay:.1s;} .rv.d2{transition-delay:.2s;} .rv.d3{transition-delay:.3s;}
+
+/* hero anim */
+@keyframes up { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+.hero-left .h-tag   { animation:up .6s .1s both; }
+.hero-left .hero-h1 { animation:up .6s .25s both; }
+.hero-left .hero-sub{ animation:up .6s .4s both; }
+.hero-left .hero-btns{ animation:up .6s .55s both; }
+.hero-left .trust-row{ animation:up .6s .7s both; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav>
+  <a href="#" class="logo4">
+    <div class="logo4-icon">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shield -->
+        <path d="M22 2L4 10v13c0 11 8 20 18 21 10-1 18-10 18-21V10L22 2z" fill="#1B3C8B"/>
+        <!-- Red top band -->
+        <path d="M4 10l18-8 18 8v5H4v-5z" fill="#C41E1E"/>
+        <!-- Gold divider line -->
+        <rect x="4" y="14.5" width="36" height="1.5" fill="#C8860A"/>
+        <!-- Truck simplified -->
+        <rect x="10" y="22" width="16" height="9" rx=".5" fill="white" opacity=".95"/>
+        <rect x="26" y="24.5" width="8" height="6.5" rx=".5" fill="white" opacity=".95"/>
+        <circle cx="14.5" cy="32.5" r="2" fill="#C41E1E"/>
+        <circle cx="29.5" cy="32.5" r="2" fill="#C41E1E"/>
+        <!-- Speed lines -->
+        <line x1="4" y1="27" x2="9.5" y2="27" stroke="#C8860A" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="4" y1="30" x2="8" y2="30" stroke="#C8860A" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+      </svg>
+    </div>
+    <div class="logo4-text">
+      <strong>America's Trucking</strong>
+      <span>Logistics · Est. 2009</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#servicios4">Servicios</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#cotizador4">Cotizador</a></li>
+    <li><a href="#nosotros4">Nosotros</a></li>
+    <li><a href="#admin4">Admin</a></li>
+    <li><a href="#contacto4">Contacto</a></li>
+  </ul>
+
+  <button class="nav-btn" onclick="document.getElementById('cotizador4').scrollIntoView({behavior:'smooth'})">
+    Cotizar Ahora →
+  </button>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="h-tag">
+      <div class="h-tag-dot"></div>
+      Transporte de Carga Nacional
+    </div>
+    <h1 class="hero-h1">
+      Tu carga,<br>
+      nuestra <em>promesa.</em>
+    </h1>
+    <p class="hero-sub">
+      Más de 15 años movilizando negocios en los 48 estados. Tecnología GPS, conductores certificados y una tasa de satisfacción del cliente que habla por sí sola.
+    </p>
+    <div class="hero-btns">
+      <a href="#cotizador4" class="btn-h1">Solicitar Cotización</a>
+      <a href="#testimonios" class="btn-h2">Ver Testimonios</a>
+    </div>
+    <div class="trust-row">
+      <div class="trust-avatars">
+        <div class="t-av">MR</div>
+        <div class="t-av">JS</div>
+        <div class="t-av">AL</div>
+        <div class="t-av">PK</div>
+        <div class="t-av" style="background:var(--red)">+</div>
+      </div>
+      <div class="trust-text">
+        <strong>50,000+ clientes satisfechos</strong>
+        <span>4.9/5 promedio de calificación</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-badge2">
+      <div class="hb2-num">15+</div>
+      <div class="hb2-lbl">Años de<br>experiencia</div>
+    </div>
+    <div class="float-review">
+      <div class="fr-stars">★★★★★</div>
+      <div class="fr-quote">"Entrega exactamente a tiempo. Nunca más volvimos a cambiar de proveedor."</div>
+      <div class="fr-author">— Marcus R. · Director de Logística</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="sst"><div class="sst-num">50K+</div><div class="sst-lbl">Envíos<br>completados</div></div>
+  <div class="sst"><div class="sst-num">99.4%</div><div class="sst-lbl">Entregas<br>a tiempo</div></div>
+  <div class="sst"><div class="sst-num">48</div><div class="sst-lbl">Estados<br>cubiertos</div></div>
+  <div class="sst"><div class="sst-num">4.9★</div><div class="sst-lbl">Calificación<br>promedio</div></div>
+</div>
+
+<!-- ═══════════ SERVICIOS ═══════════ -->
+<section id="servicios4" class="sec4 rv">
+  <div class="tag4">Nuestras Soluciones</div>
+  <h2 class="sh4">Servicios que <em>mueven</em><br>tu negocio</h2>
+  <p class="sdesc">Cada tipo de carga tiene su solución. Operamos con la tecnología y el personal certificado para garantizarlo.</p>
+  <div class="svc4-grid">
+    <div class="svc4"><div class="svc4-num">01</div><div class="svc4-icon">🚛</div><div class="svc4-title">Truckload Completo · FTL</div><p class="svc4-desc">Camión exclusivo de punto a punto. Sin transbordos, máxima prioridad de ruta para cargas superiores a 10,000 lbs.</p></div>
+    <div class="svc4"><div class="svc4-num">02</div><div class="svc4-icon">📦</div><div class="svc4-title">Carga Parcial · LTL</div><p class="svc4-desc">Paga únicamente por el espacio que necesitas. Consolidación inteligente para reducir costos sin sacrificar tiempos.</p></div>
+    <div class="svc4"><div class="svc4-num">03</div><div class="svc4-icon">❄️</div><div class="svc4-title">Carga Refrigerada</div><p class="svc4-desc">Control de temperatura certificado para alimentos, farmacéuticos y productos sensibles. Monitoreo IoT 24/7.</p></div>
+    <div class="svc4"><div class="svc4-num">04</div><div class="svc4-icon">⚡</div><div class="svc4-title">Despacho Urgente</div><p class="svc4-desc">Tiempo de reacción menor a 2 horas. Conductor dedicado, ruta directa y seguimiento en vivo para cuando cada minuto cuenta.</p></div>
+    <div class="svc4"><div class="svc4-num">05</div><div class="svc4-icon">🏗️</div><div class="svc4-title">Sobredimensionado</div><p class="svc4-desc">Equipos especializados para cargas fuera de estándar. Gestión de permisos, escoltas y planificación de rutas alternativas.</p></div>
+    <div class="svc4"><div class="svc4-num">06</div><div class="svc4-icon">🛰️</div><div class="svc4-title">Portal de Tracking</div><p class="svc4-desc">Dashboard exclusivo por cliente: GPS en tiempo real, historial de envíos, alertas automáticas y reportes descargables.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ PARTNERS STRIP ═══════════ -->
+<div class="partners-strip">
+  <div class="ps-label">Empresas que confían en ATL</div>
+  <div class="ps-logos">
+    <div class="ps-logo">FreightCo Industries</div>
+    <div class="ps-logo">Pacific Distribución</div>
+    <div class="ps-logo">Nexus Manufacturing</div>
+    <div class="ps-logo">SunBelt Supply Co.</div>
+    <div class="ps-logo">Atlas Retail Group</div>
+    <div class="ps-logo">ColdChain USA</div>
+  </div>
+</div>
+
+<!-- ═══════════ TESTIMONIOS ═══════════ -->
+<section id="testimonios">
+  <div class="test-header">
+    <div class="tag4">Lo que dicen nuestros clientes</div>
+    <h2>Más de 50,000 empresas nos<br>respaldan con su <em>confianza</em></h2>
+    <p>Cada calificación es una entrega cumplida. Aquí algunos de nuestros clientes más fieles.</p>
+  </div>
+
+  <!-- Rating summary -->
+  <div class="rating-summary">
+    <div class="rs-score">4.9</div>
+    <div class="rs-right">
+      <div class="rs-stars">★★★★★</div>
+      <div class="rs-count">Basado en 12,400+ reseñas verificadas</div>
+    </div>
+    <div class="rs-bars">
+      <div class="rs-bar-row"><span>5★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:88%"></div></div><span>88%</span></div>
+      <div class="rs-bar-row"><span>4★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:9%"></div></div><span>9%</span></div>
+      <div class="rs-bar-row"><span>3★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:2%"></div></div><span>2%</span></div>
+      <div class="rs-bar-row"><span>2★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:1%"></div></div><span>1%</span></div>
+      <div class="rs-bar-row"><span>1★</span><div class="rs-bar-track"><div class="rs-bar-fill" style="width:0%"></div></div><span>0%</span></div>
+    </div>
+  </div>
+
+  <!-- Testimonials grid -->
+  <div class="test-grid">
+
+    <!-- FEATURED -->
+    <div class="test-card featured">
+      <div class="tc-tag">⭐ Destacado</div>
+      <div class="tc-quote-mark">"</div>
+      <div class="tc-stars">★★★★★</div>
+      <div class="tc-text">
+        Llevamos 4 años trabajando con America's Trucking Logistics y jamás han fallado una sola entrega. Manejamos volúmenes enormes de maquinaria pesada y cada envío llega en el tiempo prometido, con el cuidado que nuestro equipo necesita. Su equipo de soporte contesta a cualquier hora y eso, en este negocio, lo es todo.
+      </div>
+      <div class="tc-footer">
+        <div class="tc-avatar">MR</div>
+        <div>
+          <div class="tc-name">Marcus Rodriguez</div>
+          <div class="tc-role">Director de Logística · ConstructTech Industries, Texas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="test-card gold-card">
+      <div class="tc-tag">Carga Refrigerada</div>
+      <div class="tc-quote-mark">"</div>
+      <div class="tc-stars">★★★★★</div>
+      <div class="tc-text">
+        Nuestra cadena de frío es crítica. ATL mantiene la temperatura exacta en cada trayecto y recibimos alertas en tiempo real. Imposible pedir más.
+      </div>
+      <div class="tc-footer">
+        <div class="tc-avatar gold-av">SL</div>
+        <div>
+          <div class="tc-name">Sarah Lindström</div>
+          <div class="tc-role">CEO · Nordic Fresh Foods, Minnesota</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="test-card">
+      <div class="tc-quote-mark">"</div>
+      <div class="tc-stars">★★★★★</div>
+      <div class="tc-text">
+        Probé tres compañías antes de ATL. Ninguna tuvo el nivel de comunicación y transparencia que ellos ofrecen desde el primer contacto.
+      </div>
+      <div class="tc-footer">
+        <div class="tc-avatar" style="background:linear-gradient(135deg,#1B3C8B,#0a1a50)">JK</div>
+        <div>
+          <div class="tc-name">James Kim</div>
+          <div class="tc-role">Gerente de Operaciones · Apex Electronics, California</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 4 video style -->
+    <div class="test-video rv d1">
+      <div class="tv-thumb">
+        <div class="tv-play">▶</div>
+      </div>
+      <div class="tv-body">
+        <div class="tv-stars">★★★★★</div>
+        <div class="tv-quote">"El portal de tracking es increíble. Mi equipo ve en tiempo real dónde está cada carga."</div>
+        <div class="tv-author">Patricia Ochoa</div>
+        <div class="tv-co">VP Supply Chain · SunBelt Retail Group</div>
+      </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="test-card blue-card rv d2">
+      <div class="tc-tag">FTL · 3 años</div>
+      <div class="tc-quote-mark">"</div>
+      <div class="tc-stars">★★★★★</div>
+      <div class="tc-text">
+        Cientos de envíos FTL al año y la tasa de entrega perfecta supera el 99%. ATL es un socio estratégico, no un proveedor más.
+      </div>
+      <div class="tc-footer">
+        <div class="tc-avatar blue-av">DW</div>
+        <div>
+          <div class="tc-name">David Whitfield</div>
+          <div class="tc-role">Director Ejecutivo · Whitfield Manufacturing, Ohio</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="test-card rv d3">
+      <div class="tc-quote-mark">"</div>
+      <div class="tc-stars">★★★★☆</div>
+      <div class="tc-text">
+        Precio competitivo y excelente comunicación en todo momento. El equipo de cotización respondió en menos de 30 minutos.
+      </div>
+      <div class="tc-footer">
+        <div class="tc-avatar" style="background:linear-gradient(135deg,#C8860A,#7a4a00)">AL</div>
+        <div>
+          <div class="tc-name">Amanda Lee</div>
+          <div class="tc-role">Coordinadora de Compras · Pacific Coast Supply</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- nav dots -->
+  <div class="test-nav">
+    <div class="tn-dot active"></div>
+    <div class="tn-dot"></div>
+    <div class="tn-dot"></div>
+  </div>
+</section>
+
+<!-- ═══════════ COTIZADOR ═══════════ -->
+<section id="cotizador4" class="sec4 rv">
+  <div class="tag4">Cotizador Online</div>
+  <h2 class="sh4">Obtén tu estimado<br>al <em>instante</em></h2>
+  <p class="sdesc">Sin compromisos. Completa el formulario y recibe tu cotización en segundos.</p>
+
+  <div class="q4-wrap">
+    <div class="q4-form">
+      <div class="q4-row">
+        <div class="q4f"><label>Ciudad Origen</label><input id="q4-ori" type="text" placeholder="Los Angeles, CA"></div>
+        <div class="q4f"><label>Ciudad Destino</label><input id="q4-dest" type="text" placeholder="New York, NY"></div>
+      </div>
+      <div class="q4f"><label>Tipo de Servicio</label>
+        <select id="q4-type">
+          <option value="1">Truckload Completo · FTL</option>
+          <option value="0.6">Carga Parcial · LTL</option>
+          <option value="1.5">Carga Refrigerada</option>
+          <option value="2">Despacho Urgente</option>
+          <option value="1.8">Sobredimensionado</option>
+        </select>
+      </div>
+      <div class="q4-row">
+        <div class="q4f"><label>Peso · lbs</label><input id="q4-wt" type="number" placeholder="5,000"></div>
+        <div class="q4f"><label>Distancia · millas</label><input id="q4-dist" type="number" placeholder="800"></div>
+      </div>
+      <div class="q4-row">
+        <div class="q4f"><label>Fecha de Despacho</label><input id="q4-date" type="date"></div>
+        <div class="q4f"><label>Descripción</label><input id="q4-desc" type="text" placeholder="Tipo de mercancía..."></div>
+      </div>
+      <button class="q4-btn" onclick="calcQ4()">Calcular Estimado →</button>
+    </div>
+
+    <div class="q4-result-side">
+      <div class="q4-trust">
+        <div class="q4t-head">Estimado de Costo</div>
+        <div class="q4t-sub">Actualizado al instante</div>
+        <div class="q4t-price" id="q4-price">$—</div>
+        <div class="q4t-range" id="q4-range">Completa el formulario</div>
+        <div class="q4t-feat">
+          <div class="q4t-feat-item">Seguro de carga incluido</div>
+          <div class="q4t-feat-item">GPS tracking en tiempo real</div>
+          <div class="q4t-feat-item">Confirmación en &lt;2 horas</div>
+          <div class="q4t-feat-item">Sin costos ocultos</div>
+        </div>
+        <div style="margin-top:24px;">
+          <button class="btn-h1" style="width:100%;text-align:center;padding:16px;"
+            onclick="alert('Solicitud enviada. Un agente se pondrá en contacto pronto.')">
+            Confirmar Solicitud →
+          </button>
+        </div>
+      </div>
+      <div class="q4-mini-test">
+        <div class="q4mt-stars">★★★★★</div>
+        <div class="q4mt-quote">"Recibí mi cotización en minutos y el precio fue exactamente lo que me dijeron. Sin sorpresas."</div>
+        <div class="q4mt-author">— Roberto V. · FreightCo Industries</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ NOSOTROS ═══════════ -->
+<section id="nosotros4" class="sec4 rv">
+  <div class="ab4-grid">
+    <div class="ab4-img">
+      <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=900&q=80" alt="Flota ATL">
+      <div class="ab4-stripe"></div>
+      <div class="ab4-badge"><strong>15+</strong><span>Años en<br>la industria</span></div>
+    </div>
+    <div>
+      <div class="tag4">Quiénes Somos</div>
+      <h2 class="sh4">Confianza construida<br>en cada <em>milla</em></h2>
+      <p class="sdesc" style="margin-bottom:32px;">America's Trucking Logistics nació en 2009 con una misión simple: hacer que cada entrega sea una promesa cumplida. Hoy somos el socio logístico de miles de empresas en EE.UU.</p>
+      <div class="pillar4"><div class="p4-num">01</div><div class="p4-body"><h4>Integridad</h4><p>Transparencia absoluta en precios y tiempos. Lo que cotizamos es lo que cobras.</p></div></div>
+      <div class="pillar4"><div class="p4-num">02</div><div class="p4-body"><h4>Tecnología</h4><p>GPS satelital, IoT, portal digital y dashboard administrativo en tiempo real.</p></div></div>
+      <div class="pillar4"><div class="p4-num">03</div><div class="p4-body"><h4>Equipo Certificado</h4><p>Conductores CDL, capacitación continua y cobertura de seguro federal completa.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ADMIN ═══════════ -->
+<section id="admin4" class="sec4 rv">
+  <div class="tag4">Panel Administrativo</div>
+  <h2 class="sh4">Gestión <em>total</em><br>desde un solo lugar</h2>
+  <p class="sdesc">Tu equipo administra operaciones completas con integración a Google Sheets y dashboard en tiempo real.</p>
+
+  <div class="ad4-wrap">
+    <div>
+      <div class="feat4">
+        <div class="feat4-icon">📊</div>
+        <div><h4>Dashboard en Tiempo Real <span class="fbadge">LIVE</span></h4><p>KPIs de envíos activos, entregas del día, ingresos y rendimiento de flota. Acceso desde cualquier dispositivo.</p></div>
+      </div>
+      <div class="feat4">
+        <div class="feat4-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#15a550"><path d="M19.5 3h-15A1.5 1.5 0 003 4.5v15A1.5 1.5 0 004.5 21h15a1.5 1.5 0 001.5-1.5v-15A1.5 1.5 0 0019.5 3zM9 16.5H6v-1.5h3v1.5zm0-3H6V12h3v1.5zm0-3H6V9h3v1.5zm9 6h-7.5V15H18v1.5zm0-3h-7.5V12H18v1.5zm0-3h-7.5V9H18v1.5z"/></svg>
+        </div>
+        <div>
+          <h4>Google Sheets Sync <span class="fbadge g">CONECTADO</span></h4>
+          <p>Actualiza estados de envíos, agrega notas y genera reportes directo desde tu hoja de cálculo.</p>
+          <div class="gs-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#15a550"><circle cx="12" cy="12" r="10"/></svg>
+            Google Sheets · Sincronizado
+          </div>
+        </div>
+      </div>
+      <div class="feat4">
+        <div class="feat4-icon">🔔</div>
+        <div><h4>Alertas Automáticas <span class="fbadge">SMS · EMAIL</span></h4><p>Notificaciones instantáneas por cambio de estado, retrasos o incidencias. Cero supervisión manual.</p></div>
+      </div>
+      <div class="feat4">
+        <div class="feat4-icon">📈</div>
+        <div><h4>Reportes Automáticos <span class="fbadge">AUTO</span></h4><p>Reportes semanales/mensuales en PDF o sincronizados directo a Google Drive.</p></div>
+      </div>
+    </div>
+
+    <div class="dash4">
+      <div class="d4-bar">
+        <div class="d4-dot r"></div><div class="d4-dot y"></div><div class="d4-dot g"></div>
+        <div class="d4-bar-title">ATL Admin Panel</div>
+      </div>
+      <div class="d4-body">
+        <div class="d4-kpis">
+          <div class="d4-kpi k1"><div class="d4-val">142</div><div class="d4-lbl">En tránsito</div></div>
+          <div class="d4-kpi k2"><div class="d4-val">38</div><div class="d4-lbl">Hoy entregados</div></div>
+          <div class="d4-kpi k3"><div class="d4-val">$84K</div><div class="d4-lbl">Ing. mensual</div></div>
+          <div class="d4-kpi k4"><div class="d4-val" style="color:#22c55e">99%</div><div class="d4-lbl">Puntualidad</div></div>
+        </div>
+        <div class="d4-chart">
+          <div class="d4-chart-title">Envíos · Semana actual</div>
+          <div class="d4-bars" id="d4bars"></div>
+        </div>
+        <table class="d4-table">
+          <thead><tr><th>#Guía</th><th>Destino</th><th>Peso</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td>ATL-9821</td><td>Dallas TX</td><td>8,400 lbs</td><td><span class="st t">En tránsito</span></td></tr>
+            <tr><td>ATL-9820</td><td>Miami FL</td><td>12,000 lbs</td><td><span class="st d">Entregado</span></td></tr>
+            <tr><td>ATL-9819</td><td>Chicago IL</td><td>5,200 lbs</td><td><span class="st p">Pendiente</span></td></tr>
+            <tr><td>ATL-9818</td><td>Seattle WA</td><td>9,800 lbs</td><td><span class="st t">En tránsito</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACTO ═══════════ -->
+<section id="contacto4">
+  <div class="c4-wrap">
+    <div>
+      <div class="tag4" style="color:var(--gold-lt)"><span style="width:24px;height:2px;background:var(--gold-lt);display:inline-block;margin-right:10px;"></span>Contáctanos</div>
+      <h2 class="c4-h">Hablemos<br>de tu <em>carga</em></h2>
+      <p class="c4-sub">Nuestro equipo de especialistas está listo para diseñar la solución logística perfecta para tu negocio.</p>
+      <button class="btn-h1" style="padding:16px 36px;font-size:13px;">Enviar Mensaje →</button>
+    </div>
+    <div>
+      <div class="c4-cc"><div class="c4-icon">📞</div><div><div class="c4-label">Teléfono</div><div class="c4-val">+1 (800) ATL-LOGX · 24/7</div></div></div>
+      <div class="c4-cc"><div class="c4-icon">✉️</div><div><div class="c4-label">Email</div><div class="c4-val">info@atlogistics.com</div></div></div>
+      <div class="c4-cc"><div class="c4-icon">📍</div><div><div class="c4-label">Sede Central</div><div class="c4-val">1200 Freight Blvd, Los Angeles CA 90021</div></div></div>
+      <div class="c4-cc"><div class="c4-icon">🌐</div><div><div class="c4-label">Portal de Tracking</div><div class="c4-val">track.atlogistics.com</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot4-logo">America's <span>Trucking</span> Logistics</div>
+  <div class="foot4-copy">© 2025 ATL LLC · DOT #123456 · MC #789012</div>
+  <div class="foot4-links"><a href="#">Privacidad</a><a href="#">Términos</a><a href="#">Sitemap</a></div>
+</footer>
+
+<div class="p4-badge">📋 Propuesta 4 · ATL</div>
+
+<script>
+// Reveal on scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+// Bar chart
+const bars = [
+  {d:'L',h:58,c:'#1B3C8B'},{d:'M',h:76,c:'#1B3C8B'},{d:'X',h:50,c:'#1B3C8B'},
+  {d:'J',h:90,c:'#C41E1E'},{d:'V',h:68,c:'#1B3C8B'},{d:'S',h:98,c:'#C8860A'},
+  {d:'D',h:32,c:'#1B3C8B',op:.3}
+];
+const bc = document.getElementById('d4bars');
+if(bc) bars.forEach(b => {
+  const col = document.createElement('div');
+  col.className = 'd4-bar-col';
+  col.innerHTML = `<div class="d4-bar-fill" style="height:${b.h}%;background:${b.c};opacity:${b.op||1};"></div><div class="d4-bar-lbl">${b.d}</div>`;
+  bc.appendChild(col);
+});
+
+// Quote calc
+function calcQ4() {
+  const ori  = document.getElementById('q4-ori').value;
+  const dest = document.getElementById('q4-dest').value;
+  const dist = parseFloat(document.getElementById('q4-dist').value) || 0;
+  const wt   = parseFloat(document.getElementById('q4-wt').value) || 0;
+  const mult = parseFloat(document.getElementById('q4-type').value) || 1;
+
+  if(!ori||!dest||!dist||!wt) { alert('Por favor completa todos los campos principales.'); return; }
+
+  const base = (dist * 2.4 + wt * 0.015) * mult;
+  const lo = Math.round(base * .9);
+  const hi = Math.round(base * 1.1);
+
+  document.getElementById('q4-price').textContent = '$'+lo.toLocaleString()+' – $'+hi.toLocaleString();
+  document.getElementById('q4-range').textContent = `Para ${dist.toLocaleString()} mi · ${wt.toLocaleString()} lbs`;
+}
+
+document.getElementById('q4-date').value = new Date().toISOString().split('T')[0];
+
+// Dots interaction
+document.querySelectorAll('.tn-dot').forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    document.querySelectorAll('.tn-dot').forEach(d => d.classList.remove('active'));
+    dot.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
